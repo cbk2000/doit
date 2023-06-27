@@ -112,7 +112,7 @@ const Index = () => {
       image = match ? match[1] : null;
       content = token[34][4][1];
       const searchString = 'Path:';
-      target = target = findTargetValue(token, searchString) || "docubase/";
+      target = findTargetValue(token, searchString) || "docubase/";
     }
   
     return {
