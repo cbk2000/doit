@@ -6,20 +6,20 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docubase',
+  title: 'Doit',
   tagline: 'May The fork() Be With You',
   favicon: 'img/logo.jpg',
 
   // Set the production url of your site here
-  url: 'https://cbk2000.github.io',
+  url: 'http://doit.docusaurus.org',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/docubase',
+  baseUrl: '/doit',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'cbk2000', // Usually your GitHub org/user name.
-  projectName: 'docubase', // Usually your repo name.
+  projectName: 'doit', // Usually your repo name.
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -65,7 +65,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/logo.jpg',
       navbar: {
-        title: 'Docubase',
+        title: 'Doit',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.jpg',
@@ -79,7 +79,7 @@ const config = {
           },
           {to: '/blog/welcome', label: 'Kambing-Blog', position: 'left'},
           {
-            href: 'https://github.com/cbk2000/docubase',
+            href: 'https://github.com/cbk2000/doit',
             label: 'GitHub',
             position: 'right',
           },
