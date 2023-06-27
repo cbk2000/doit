@@ -60,6 +60,8 @@ const Index = () => {
     const md = require('markdown').markdown;
     const contentString = file.content.toString();
     const tokens = md.parse(contentString);
+
+    console.log(tokens)
   
     let title = "";
     let subtitle = "";
@@ -75,26 +77,26 @@ const Index = () => {
 
       // To Display Cards In Local
 
-      // title = token[20][1];
-      // subtitle = token[28][2][1];
-      // const rawImage = token[37];
-      // const srcRegex = /"src":"([^"]+)"/;
-      // const match = rawImage.match(srcRegex);
-      // image = match ? match[1] : null;
-      // content = token[44][2][1];
-      // target = token[54][1].split(':')[1].trim();
+      title = token[20][1];
+      subtitle = token[28][2][1];
+      const rawImage = token[37];
+      const srcRegex = /"src":"([^"]+)"/;
+      const match = rawImage.match(srcRegex);
+      image = match ? match[1] : null;
+      content = token[44][2][1];
+      target = token[54][1].split(':')[1].trim();
       
 
       // To Display Cards In Deployment
 
-      title = token[18][4][1];
-      subtitle = token[22][4][1];
-      const rawImage = token[30][3];
-      const srcRegex = /"src":"([^"]+)"/;
-      const match = rawImage.match(srcRegex);
-      image = match ? match[1] : null;
-      content = token[34][4][1];
-      target = token[44][1].split(':')[1].trim();
+      // title = token[18][4][1];
+      // subtitle = token[22][4][1];
+      // const rawImage = token[30][3];
+      // const srcRegex = /"src":"([^"]+)"/;
+      // const match = rawImage.match(srcRegex);
+      // image = match ? match[1] : null;
+      // content = token[34][4][1];
+      // target = token[44][1].split(':')[1].trim();
     }
   
     return {
