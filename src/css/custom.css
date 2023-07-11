@@ -36,3 +36,8 @@
 a{
   color: #ae865f
 }
+
+.important-text {
+  color: red;
+  font-weight: bold;
+}

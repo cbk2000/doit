@@ -62,38 +62,78 @@ const Index = () => {
     const md = require("markdown").markdown;
     const contentString = file.content.toString();
     const tokens = md.parse(contentString);
-
-    const extractImage = (rawImage) => {
+  
+    let title = "";
+    let subtitle = "";
+    let image = "";
+    let content = "";
+    let target = "";
+  
+    const getTitleSubtitle = token => {
+      if (customFields.NODE_ENV === "production") {
+        title = token[18][4][1];
+        subtitle = token[22][4][1];
+      } else {
+        title = token[20][1];
+        subtitle = token[28][2][1];
+      }
+    };
+  
+    const getImageContent = token => {
+      let rawImage;
+      if (customFields.NODE_ENV === "production") {
+        rawImage = token[30][3];
+        content = token[34][4][1];
+      } else {
+        rawImage = token[37];
+        content = token[44][2][1];
+      }
       const srcRegex = /"src":"([^"]+)"/;
       const match = rawImage.match(srcRegex);
-      return match ? match[1] : null;
+      image = match ? match[1] : null;
+    };
+  
+    console.log(tokens)
+    for (let i = tokens.length - 1; i >= 0; i--) {
+      const token = tokens[i];
+  
+      if (token === "markdown") {
+        continue;
+      }
+  
+      console.log("sampepeko")
+      if (Array.isArray(token)) {
+    
+        for (const nestedToken of token) {
+          // Check if nestedToken is an array and its first element is 'inlinecode'
+          if (Array.isArray(nestedToken) && nestedToken[0] === 'inlinecode' && typeof nestedToken[1] === 'string') {
+            const inlineString = nestedToken[1];
+            console.log("inline ketemu")
+            if (inlineString.includes('Path:')) {
+              console.log("found");
+              const pathLine = inlineString.split('\n').find(line => line.startsWith('Path:'));
+              target = pathLine.split(":")[1].trim();
+            }
+          }
+        }
+    
+        getTitleSubtitle(token);
+        getImageContent(token);
+      }
+  
+      // If we have found the target, there's no need to continue looping
+      if (target) break;
+    }
+  
+    return {
+      title,
+      subtitle,
+      image,
+      content,
+      target,
     };
 
-    let data = {};
-
-    for (const token of tokens) {
-      if (token !== "markdown") {
-        if (customFields.NODE_ENV == "production") {
-          data = {
-            title: token[18][4][1],
-            subtitle: token[22][4][1],
-            image: extractImage(token[30][3]),
-            content: token[34][4][1],
-            target: token[44][1].split(":")[1].trim(),
-          };
-        } else {
-          data = {
-            title: token[20][1],
-            subtitle: token[28][2][1],
-            image: extractImage(token[37]),
-            content: token[44][2][1],
-            target: token[54][1].split(":")[1].trim(),
-          };
-        }
-      }
-    }
-
-    return data;
+  
   };
 
   return (
