@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./QuickAccess.css";
 import Card from "@site/src/components/QuickAccess/QuickAccessCard";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const Index = () => {
-
+  const {
+    siteConfig: { customFields },
+  } = useDocusaurusContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [cards, setCards] = useState([]);
 
@@ -56,54 +59,41 @@ const Index = () => {
   };
 
   const processMarkdown = (file) => {
-
-    const md = require('markdown').markdown;
+    const md = require("markdown").markdown;
     const contentString = file.content.toString();
     const tokens = md.parse(contentString);
-  
-    let title = "";
-    let subtitle = "";
-    let image = "";
-    let content = "";
-    let target = "";
-  
-    for (const token of tokens) {
 
-      if(token === "markdown"){
-        continue
-      }
-
-      // To Display Cards In Local
-
-      // title = token[20][1];
-      // subtitle = token[28][2][1];
-      // const rawImage = token[37];
-      // const srcRegex = /"src":"([^"]+)"/;
-      // const match = rawImage.match(srcRegex);
-      // image = match ? match[1] : null;
-      // content = token[44][2][1];
-      // target = token[54][1].split(':')[1].trim();
-      
-
-      // To Display Cards In Deployment
-
-      title = token[18][4][1];
-      subtitle = token[22][4][1];
-      const rawImage = token[30][3];
+    const extractImage = (rawImage) => {
       const srcRegex = /"src":"([^"]+)"/;
       const match = rawImage.match(srcRegex);
-      image = match ? match[1] : null;
-      content = token[34][4][1];
-      target = token[44][1].split(':')[1].trim();
-    }
-  
-    return {
-      title,
-      subtitle,
-      image,
-      content,
-      target
+      return match ? match[1] : null;
     };
+
+    let data = {};
+
+    for (const token of tokens) {
+      if (token !== "markdown") {
+        if (customFields.NODE_ENV == "production") {
+          data = {
+            title: token[18][4][1],
+            subtitle: token[22][4][1],
+            image: extractImage(token[30][3]),
+            content: token[34][4][1],
+            target: token[44][1].split(":")[1].trim(),
+          };
+        } else {
+          data = {
+            title: token[20][1],
+            subtitle: token[28][2][1],
+            image: extractImage(token[37]),
+            content: token[44][2][1],
+            target: token[54][1].split(":")[1].trim(),
+          };
+        }
+      }
+    }
+
+    return data;
   };
 
   return (
