@@ -35,7 +35,7 @@ You might select other options based on your faith and religion
 ![debVBOX-009](../../static/img/legacy_assets/debVBOX-009.jpg)
 :::
 
-## Select: NEW
+### Select: NEW
 
 :::note
 When doing the installation, most of the options are <span class="important-text">DEFAULT</span>. Possible different answers will be marked with "<span class="important-text">ARROWS</span>." If you are in "Guided Mode," switch to <span class="important-text">`Expert Mode`</span>
@@ -83,7 +83,7 @@ Do not worry about having a 24 GB empty disk! An empty disk does not occupy much
 
 ![debVBOX-014](../../static/img/legacy_assets/debVBOX-014.jpg)
 
-## Export OVA: `DEB00-0`
+### Export OVA: `DEB00-0`
 
 * Select: 
   * Tools --> Export
@@ -91,7 +91,7 @@ Do not worry about having a 24 GB empty disk! An empty disk does not occupy much
 
 ![debVBOX-015](../../static/img/legacy_assets/debVBOX-015.jpg)
 
-## Rename `DEB00-0` to `DEB00-1`
+### Rename `DEB00-0` to `DEB00-1`
 
 ![debVBOX-016](../../static/img/legacy_assets/debVBOX-016.jpg)
 
@@ -104,6 +104,7 @@ Do not worry about having a 24 GB empty disk! An empty disk does not occupy much
 
 ![debVBOX-018](../../static/img/legacy_assets/debVBOX-018.jpg)
 
+## Fine Tuning
 ### General: Basic
 
 * Name: `DEB00-0`
@@ -218,11 +219,11 @@ The current ISO image is/was **`debian-12.0.0-amd64-netinst.iso`** — but this 
 
 ![debVBOX-034](../../static/img/legacy_assets/debVBOX-034.jpg)
 
-## DONE (OK)
+### DONE (OK)
 
 ![debVBOX-035](../../static/img/legacy_assets/debVBOX-035.jpg)
 
-## EXPORT: DEB00-1
+### EXPORT: DEB00-1
 
 * TOOLS (CLICK)
 
