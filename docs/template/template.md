@@ -11,5 +11,5 @@ Content Here
 
 ```
 Updated At: 25/06/2023
-Path: docs/template/
+Path: docs/template
 ```
