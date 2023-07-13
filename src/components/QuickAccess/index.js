@@ -61,6 +61,7 @@ const Index = () => {
   const processMarkdown = (file) => {
     const md = require("markdown").markdown;
     const contentString = file.content.toString();
+    console.log(contentString)
     const tokens = md.parse(contentString);
   
     let title = "";
@@ -69,31 +70,54 @@ const Index = () => {
     let content = "";
     let target = "";
   
-    const getTitleSubtitle = token => {
-      if (customFields.NODE_ENV === "production") {
-        title = token[18][4]?.[1];
-        subtitle = token[22][4]?.[1];
-      } else {
-        title = token[20]?.[1];
-        subtitle = token[28]?.[2]?.[1];
+    const getTitleSubtitle = () => {
+      const titleRegex = /"h1",[^`]+`([^`]+)`/;
+      const titleMatch = contentString.match(titleRegex);
+
+      if (titleMatch) {
+        title = titleMatch[1];
+        console.log("title: " + title); 
+      }
+
+      const subtitleRegex = /"h2",[^`]+`([^`]+)`/;
+      const subtitleMatch = contentString.match(subtitleRegex);
+
+      if (subtitleMatch) {
+        subtitle = subtitleMatch[1];
+        console.log("subtitle: " + subtitle); 
       }
     };
   
-    const getImageContent = token => {
-      let rawImage;
-      if (customFields.NODE_ENV === "production") {
-        rawImage = token[30][3];
-        content = token[34][4]?.[1];
-      } else {
-        rawImage = token[37];
-        content = token[44]?.[2]?.[1];
+    const getImageContent = () => {
+      const srcRegex = /\("img",\s*{\s*parentName:"p"[^}]*"src":"([^"]+)"/;
+      const srcMatch = contentString.match(srcRegex);
+
+      if (srcMatch) {
+        image = srcMatch[1];
+        console.log("image: " + image);
       }
-      const srcRegex = /"src":"([^"]+)"/;
-      const match = rawImage !== undefined ? rawImage.match(srcRegex) : null
-      image = match ? match[1] : null;
+
+      const contentRegex = /"p",\s*null,\s*`([^`]+)`/;
+      const contentMatch = contentString.match(contentRegex);
+
+      if (contentMatch) {
+        content = contentMatch[1];
+        console.log("content: " + content);
+      }
+    };
+
+    const getTarget = () => {
+      const targetRegex = /"code",\s*\{parentName:"pre"\},\s*`[^`]*Path:\s*([^`]+)`/;
+      const targetMatch = contentString.match(targetRegex);
+
+      if (targetMatch) {
+        target = targetMatch[1].trim();
+        console.log(target);
+      }
     };
   
-    console.log(tokens)
+    console.log("tokens: " + tokens)
+    
     for (let i = tokens.length - 1; i >= 0; i--) {
       const token = tokens[i];
   
@@ -103,22 +127,9 @@ const Index = () => {
   
       console.log("sampepeko")
       if (Array.isArray(token)) {
-    
-        for (const nestedToken of token) {
-          // Check if nestedToken is an array and its first element is 'inlinecode'
-          if (Array.isArray(nestedToken) && nestedToken[0] === 'inlinecode' && typeof nestedToken[1] === 'string') {
-            const inlineString = nestedToken[1];
-            console.log("inline ketemu")
-            if (inlineString.includes('Path:')) {
-              console.log("found");
-              const pathLine = inlineString.split('\n').find(line => line.startsWith('Path:'));
-              target = pathLine.split(":")[1].trim();
-            }
-          }
-        }
-    
-        getTitleSubtitle(token);
-        getImageContent(token);
+        getTarget();
+        getTitleSubtitle();
+        getImageContent();
       }
   
       // If we have found the target, there's no need to continue looping
