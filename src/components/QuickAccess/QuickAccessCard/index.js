@@ -19,7 +19,7 @@ const Index = ({
       onMouseOut={handleMouseOut}
       className="text-black no-underline"
     >
-      <div className="flex flex-col h-64 w-full max-w-64 bg-gray-200 text-black rounded-xl overflow-hidden transition duration-200 ease-in-out transform hover:scale-105">
+      <div className="flex flex-col h-96 w-full max-w-64 bg-gray-200 text-black rounded-xl overflow-hidden transition duration-200 ease-in-out transform hover:scale-105">
         <div className={isHovered ? "h-0 hidden" : "h-2/4 flex"}>
           <img src={image} className="object-cover w-full h-auto" alt="Card Image" />
         </div>

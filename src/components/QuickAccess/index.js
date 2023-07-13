@@ -55,11 +55,27 @@ const Index = () => {
     }));
   };
 
+  function findTargetValue(arr, searchString) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+      const innerArr = arr[i];
+      const innerString = innerArr[1];
+      
+      if (innerString.includes(searchString)) {
+        const target = innerString.split(':')[1].trim();
+        return target;
+      }
+    }
+    
+    return null;
+  }
+
   const processMarkdown = (file) => {
 
     const md = require('markdown').markdown;
     const contentString = file.content.toString();
     const tokens = md.parse(contentString);
+
+    console.log(tokens)
   
     let title = "";
     let subtitle = "";
