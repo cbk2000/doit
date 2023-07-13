@@ -59,7 +59,6 @@ const Index = () => {
 
     const md = require('markdown').markdown;
     const contentString = file.content.toString();
-    console.log(contentString)
     const tokens = md.parse(contentString);
   
     let title = "";
@@ -74,7 +73,6 @@ const Index = () => {
 
       if (titleMatch) {
         title = titleMatch[1];
-        console.log("title: " + title); 
       }
 
       const subtitleRegex = /"h2",[^`]+`([^`]+)`/;
@@ -82,7 +80,6 @@ const Index = () => {
 
       if (subtitleMatch) {
         subtitle = subtitleMatch[1];
-        console.log("subtitle: " + subtitle); 
       }
     };
   
@@ -92,7 +89,6 @@ const Index = () => {
 
       if (srcMatch) {
         image = srcMatch[1];
-        console.log("image: " + image);
       }
 
       const contentRegex = /"p",\s*null,\s*`([^`]+)`/;
@@ -100,7 +96,6 @@ const Index = () => {
 
       if (contentMatch) {
         content = contentMatch[1];
-        console.log("content: " + content);
       }
     };
 
@@ -110,11 +105,8 @@ const Index = () => {
 
       if (targetMatch) {
         target = targetMatch[1].trim();
-        console.log(target);
       }
     };
-  
-    console.log("tokens: " + tokens)
     
     for (let i = tokens.length - 1; i >= 0; i--) {
       const token = tokens[i];
@@ -123,7 +115,6 @@ const Index = () => {
         continue;
       }
   
-      console.log("sampepeko")
       if (Array.isArray(token)) {
         getTarget();
         getTitleSubtitle();
