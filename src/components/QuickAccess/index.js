@@ -71,11 +71,11 @@ const Index = () => {
   
     const getTitleSubtitle = token => {
       if (customFields.NODE_ENV === "production") {
-        title = token[18][4][1];
-        subtitle = token[22][4][1];
+        title = token[18][4]?.[1];
+        subtitle = token[22][4]?.[1];
       } else {
-        title = token[20][1];
-        subtitle = token[28][2][1];
+        title = token[20]?.[1];
+        subtitle = token[28]?.[2]?.[1];
       }
     };
   
@@ -83,13 +83,13 @@ const Index = () => {
       let rawImage;
       if (customFields.NODE_ENV === "production") {
         rawImage = token[30][3];
-        content = token[34][4][1];
+        content = token[34][4]?.[1];
       } else {
         rawImage = token[37];
-        content = token[44][2][1];
+        content = token[44]?.[2]?.[1];
       }
       const srcRegex = /"src":"([^"]+)"/;
-      const match = rawImage.match(srcRegex);
+      const match = rawImage !== undefined ? rawImage.match(srcRegex) : null
       image = match ? match[1] : null;
     };
   
