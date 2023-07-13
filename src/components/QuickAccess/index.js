@@ -55,11 +55,27 @@ const Index = () => {
     }));
   };
 
+  function findTargetValue(arr, searchString) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+      const innerArr = arr[i];
+      const innerString = innerArr[1];
+      
+      if (innerString.includes(searchString)) {
+        const target = innerString.split(':')[1].trim();
+        return target;
+      }
+    }
+    
+    return null;
+  }
+
   const processMarkdown = (file) => {
 
     const md = require('markdown').markdown;
     const contentString = file.content.toString();
     const tokens = md.parse(contentString);
+
+    console.log(tokens)
   
     let title = "";
     let subtitle = "";
@@ -82,7 +98,8 @@ const Index = () => {
       // const match = rawImage.match(srcRegex);
       // image = match ? match[1] : null;
       // content = token[44][2][1];
-      // target = token[54][1].split(':')[1].trim();
+      // const searchString = 'Path:';
+      // target = findTargetValue(token, searchString) || "docubase/";
       
 
       // To Display Cards In Deployment
@@ -94,7 +111,8 @@ const Index = () => {
       const match = rawImage.match(srcRegex);
       image = match ? match[1] : null;
       content = token[34][4][1];
-      target = token[44][1].split(':')[1].trim();
+      const searchString = 'Path:';
+      target = findTargetValue(token, searchString) || "docubase/";
     }
   
     return {
