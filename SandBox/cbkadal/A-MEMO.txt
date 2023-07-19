@@ -1,3 +1,12 @@
+# Wed 19 Jul 2023 19:00
+1) cbdakal: clone from cbk2000/doit
+2) cbkadal: git checkout SandBox
+3) git add
+4) git commit
+5) git push
+
+
+
 # Wed 19 Jul 2023 14:00
 
 1) cbkadal: fork from https://github.com/cbk2000/doit
