@@ -1,0 +1,16 @@
+# Wed 19 Jul 2023 14:00
+
+1) cbkadal: fork from https://github.com/cbk2000/doit
+2) cbkadal: git clone git@github.com:cbkadal/doit.git
+2a) git checkout -b SandBox
+2b) mkdir -v SandBox/
+2c) vi SandBox/A-MEMO.txt
+2d) git status 
+2e) git log
+2f) git remote -v
+2g) git push origin SandBox
+2h) git remote add upstream git@github.com:cbkadal/doit.git
+2i) git fetch upstream
+2k) git merge upstream/master
+2l) git push origin master
+
