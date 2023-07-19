@@ -9,7 +9,7 @@
 2e) git log
 2f) git remote -v
 2g) git push origin SandBox
-2h) git remote add upstream git@github.com:cbkadal/doit.git
+2h) git remote add upstream git@github.com:cbk2000/doit.git
 2i) git fetch upstream
 2k) git merge upstream/master
 2l) git push origin master
