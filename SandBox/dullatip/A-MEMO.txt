@@ -1,1 +1,5 @@
 # Thu 20 Jul 2023 11:00
+
+git clone git@github.com:cbk2000/doit.git
+(CD)
+git checkout SandBox
