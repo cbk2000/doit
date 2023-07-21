@@ -37,4 +37,10 @@ $ yarn start
     ```
     git config --global core.autocrlf false
     ```
+<<<<<<< HEAD
 5. Make sure to make a clear commit message
+=======
+5. Make sure to make a clear commit message
+
+Last Edit: 20/07/2023
+>>>>>>> upstream/feat/patch-2

@@ -98,6 +98,8 @@ dism.exe /Online /Disable-Feature:Microsoft-Hyper-V
 
 <img src="https://doit.vlsm.org/assets/images/debVBOX-008.jpg" width="960" />
 
-### Updated At: 28/06/2023
-
-#### Path: docs/Virtual Box/installing
+```
+Updated At: 17/06/2023
+Path: docs/Virtual Box/installing
+CoverImage: img/sui.jpg
+```
